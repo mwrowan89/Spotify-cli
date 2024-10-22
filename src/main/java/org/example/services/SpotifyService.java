@@ -1,8 +1,12 @@
 package org.example.services;
 
+import org.apache.hc.core5.http.ParseException;
 import se.michaelthelin.spotify.SpotifyApi;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.credentials.ClientCredentials;
 import se.michaelthelin.spotify.requests.authorization.client_credentials.ClientCredentialsRequest;
 
+import java.io.IOException;
 import java.net.URI;
 
 public class SpotifyService {
@@ -18,5 +22,18 @@ public class SpotifyService {
 
     private final ClientCredentialsRequest CLIENT_CREDENTIAL_REQUEST =
             spotifyApi.clientCredentials().build();
+    public SpotifyService() {
+        getClientCredentials();
+    }
 
+
+    private void getClientCredentials(){
+        try {
+            ClientCredentials clientCredentials =
+                    CLIENT_CREDENTIAL_REQUEST.execute();
+            spotifyApi.setAccessToken(clientCredentials.getAccessToken());
+        } catch (IOException | SpotifyWebApiException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
