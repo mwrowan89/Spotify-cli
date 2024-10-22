@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.services.SpotifyService;
+import se.michaelthelin.spotify.model_objects.specification.Artist;
 
 import java.util.Scanner;
 
@@ -11,7 +12,9 @@ public class App
         Scanner scanner = new Scanner(System.in);
         SpotifyService service = new SpotifyService();
 
-
+        System.out.print("Enter an artist name: ");
+        String name = scanner.nextLine();
+        Artist artist = service.getArtist(name);
     }
 
 }
