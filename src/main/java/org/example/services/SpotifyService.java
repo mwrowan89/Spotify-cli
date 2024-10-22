@@ -1,6 +1,7 @@
 package org.example.services;
 
 import se.michaelthelin.spotify.SpotifyApi;
+import se.michaelthelin.spotify.requests.authorization.client_credentials.ClientCredentialsRequest;
 
 import java.net.URI;
 
@@ -14,5 +15,8 @@ public class SpotifyService {
             .setClientSecret(CLIENT_SECRET)
             .setRedirectUri(URI.create("http://localhost:9000"))
             .build();
+
+    private final ClientCredentialsRequest CLIENT_CREDENTIAL_REQUEST =
+            spotifyApi.clientCredentials().build();
 
 }
