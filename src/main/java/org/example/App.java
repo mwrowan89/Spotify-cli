@@ -15,6 +15,12 @@ public class App
         System.out.print("Enter an artist name: ");
         String name = scanner.nextLine();
         Artist artist = service.getArtist(name);
+        System.out.println(artist.getName());
+        System.out.println("Number of followers: " + artist.getFollowers().getTotal());
+        System.out.println("Genres: " );
+        for (String s: artist.getGenres()){
+            System.out.print(s + ", ");
+        }
     }
 
 }
